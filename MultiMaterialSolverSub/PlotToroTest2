@@ -1,0 +1,81 @@
+########################################################################
+#                                                                      #
+#                             GNUPLOT                                  #
+#                                                                      #
+########################################################################
+
+
+# 1D PLOT
+
+# Set .eps as file type
+set terminal postscript enhanced color
+
+# Settings
+reset
+set fit quiet
+# set size square
+# set size 3.0/3.0, 5.0/4.0
+set xr[0:1]
+set yr[*:*]
+set style line 12 lc rgb '#808080' lt 0 lw 1
+set grid ls 12
+set style line 11 lc rgb '#808080' lt 1
+set border
+set key box
+#set key tmargin
+set key font ",12
+set key samplen 4  spacing 1.25
+
+# Density plot
+set key at graph 0.7, 1
+set xlabel '{/:Bold x-space}' font ",18"
+set ylabel '{/:Bold Density}' font ",18"
+set output "Plots/ToroTest2Density.eps"
+# Mesh N = 100, 200, 400
+p "Data/Toro2N400.dat" u 1:14 title 'Exact solution' w l lc rgb "red" lw 2.5 , \
+"Data/Toro2N100.dat" u 1:($13 < 0 ?  $3 :  1/0) title 'N = 100, Material 1' w p pt 4 ps 0.75 lc rgb "#9400D3" lw 1.0 , \
+"Data/Toro2N100.dat" u 1:($13 > 0 ?  $8 :  1/0) title 'N = 100, Material 2' w p pt 8 ps 0.75 lc rgb "#9400D3" lw 1.0 , \
+"Data/Toro2N200.dat" u 1:($13 < 0 ?  $3 :  1/0) title 'N = 200, Material 1' w p pt 4 ps 0.75 lc rgb "blue" lw 1.0 , \
+"Data/Toro2N200.dat" u 1:($13 > 0 ?  $8 :  1/0) title 'N = 200, Material 2' w p pt 8 ps 0.75 lc rgb "blue" lw 1.0 , \
+"Data/Toro2N400.dat" u 1:($13 < 0 ?  $3 :  1/0) title 'N = 400, Material 1' w p pt 4 ps 0.75 lc rgb "green" lw 1.0 , \
+"Data/Toro2N400.dat" u 1:($13 > 0 ?  $8 :  1/0) title 'N = 400, Material 2' w p pt 8 ps 0.75 lc rgb "green" lw 1.0
+
+# Pressure plot
+set xlabel '{/:Bold x-space}' font ",18"
+set ylabel '{/:Bold Pressure}' font ",18"
+set output "Plots/ToroTest2Pressure.eps"
+# Mesh N = 100, 200, 400
+p "Data/Toro2N400.dat" u 1:16 title 'Exact solution' w l lc rgb "red" lw 2.5 , \
+"Data/Toro2N100.dat" u 1:($13 < 0 ?  $6 :  1/0) title 'N = 100, Material 1' w p pt 4 ps 0.75 lc rgb "#9400D3" lw 1.0 , \
+"Data/Toro2N100.dat" u 1:($13 > 0 ?  $11 :  1/0) title 'N = 100, Material 2' w p pt 8 ps 0.75 lc rgb "#9400D3" lw 1.0 , \
+"Data/Toro2N200.dat" u 1:($13 < 0 ?  $6 :  1/0) title 'N = 200, Material 1' w p pt 4 ps 0.75 lc rgb "blue" lw 1.0 , \
+"Data/Toro2N200.dat" u 1:($13 > 0 ?  $11 :  1/0) title 'N = 200, Material 2' w p pt 8 ps 0.75 lc rgb "blue" lw 1.0 , \
+"Data/Toro2N400.dat" u 1:($13 < 0 ?  $6 :  1/0) title 'N = 400, Material 1' w p pt 4 ps 0.75 lc rgb "green" lw 1.0 , \
+"Data/Toro2N400.dat" u 1:($13 > 0 ?  $11 :  1/0) title 'N = 400, Material 2' w p pt 8 ps 0.75 lc rgb "green" lw 1.0
+
+# Specific internal energy plot
+set xlabel '{/:Bold x-space}' font ",18"
+set ylabel '{/:Bold Specific internal energy}' font ",18"
+set output "Plots/ToroTest2SIE.eps"
+# Mesh N = 100, 200, 400
+p "Data/Toro2N200.dat" u 1:17 title 'Exact solution' w l lc rgb "red" lw 2.5 , \
+"Data/Toro2N100.dat" u 1:($13 < 0 ?  $7 :  1/0) title 'N = 100, Material 1' w p pt 4 ps 0.75 lc rgb "#9400D3" lw 1.0 , \
+"Data/Toro2N100.dat" u 1:($13 > 0 ?  $12 :  1/0) title 'N = 100, Material 2' w p pt 8 ps 0.75 lc rgb "#9400D3" lw 1.0 , \
+"Data/Toro2N200.dat" u 1:($13 < 0 ?  $7 :  1/0) title 'N = 200, Material 1' w p pt 4 ps 0.75 lc rgb "blue" lw 1.0 , \
+"Data/Toro2N200.dat" u 1:($13 > 0 ?  $12 :  1/0) title 'N = 200, Material 2' w p pt 8 ps 0.75 lc rgb "blue" lw 1.0 , \
+"Data/Toro2N400.dat" u 1:($13 < 0 ?  $7 :  1/0) title 'N = 400, Material 1' w p pt 4 ps 0.75 lc rgb "green" lw 1.0 , \
+"Data/Toro2N400.dat" u 1:($13 > 0 ?  $12 :  1/0) title 'N = 400, Material 2' w p pt 8 ps 0.75 lc rgb "green" lw 1.0
+
+# Velocity plot
+set key at graph 0.5, 1.0
+set xlabel '{/:Bold x-space}' font ",18"
+set ylabel '{/:Bold Velocity}' font ",18"
+set output "Plots/ToroTest2Velocity.eps"
+# Mesh N = 100, 200, 400
+p "Data/Toro2N400.dat" u 1:15 title 'Exact solution' w l lc rgb "red" lw 2.5 , \
+"Data/Toro2N100.dat" u 1:($13 < 0 ?  $4 :  1/0) title 'N = 100, Material 1' w p pt 4 ps 0.75 lc rgb "#9400D3" lw 1.0 , \
+"Data/Toro2N100.dat" u 1:($13 > 0 ?  $9 :  1/0) title 'N = 100, Material 2' w p pt 8 ps 0.75 lc rgb "#9400D3" lw 1.0 , \
+"Data/Toro2N200.dat" u 1:($13 < 0 ?  $4 :  1/0) title 'N = 200, Material 1' w p pt 4 ps 0.75 lc rgb "blue" lw 1.0 , \
+"Data/Toro2N200.dat" u 1:($13 > 0 ?  $9 :  1/0) title 'N = 200, Material 2' w p pt 8 ps 0.75 lc rgb "blue" lw 1.0 , \
+"Data/Toro2N400.dat" u 1:($13 < 0 ?  $4 :  1/0) title 'N = 400, Material 1' w p pt 4 ps 0.75 lc rgb "green" lw 1.0 , \
+"Data/Toro2N400.dat" u 1:($13 > 0 ?  $9 :  1/0) title 'N = 400, Material 2' w p pt 8 ps 0.75 lc rgb "green" lw 1.0

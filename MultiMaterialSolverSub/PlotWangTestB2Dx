@@ -1,0 +1,35 @@
+########################################################################
+#                                                                      #
+#                             GNUPLOT                                  #
+#                                                                      #
+########################################################################
+
+
+# 2D PLOT
+
+# Set .eps as file type
+set terminal postscript enhanced color
+
+# Settings
+reset
+set fit quiet
+# set size square
+# set size 3.0/3.0, 5.0/4.0
+set xr[0:1]
+set yr[*:*]
+set style line 12 lc rgb '#808080' lt 0 lw 1
+set grid ls 12
+set style line 11 lc rgb '#808080' lt 1
+set border
+set key box
+#set key tmargin
+set key font ",12
+set key samplen 4  spacing 1.25
+
+# Density plot y slice
+set key left bottom
+set xlabel '{/:Bold x-space}' font ",18"
+set ylabel '{/:Bold Density}' font ",18"
+set output "Plots/WangTestBDensity2Dx.eps"
+p "Data/WangTestB2Dx.dat" u 1:($13 < 0 ?  $3 :  1/0) every 400:1 title 'N = 100, Material 1' w p pt 4 ps 0.75 lc rgb "#9400D3" lw 1.0 , \
+"Data/WangTestB2Dx.dat" u 1:($13 > 0 ?  $8 :  1/0) every 400:1 title 'N = 100, Material 2' w p pt 8 ps 0.75 lc rgb "#9400D3" lw 1.0
